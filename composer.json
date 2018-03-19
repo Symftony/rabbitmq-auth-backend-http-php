@@ -1,0 +1,25 @@
+{
+    "name": "symftony/rabbitmq-auth-backend-http-php",
+    "description": "Implementation of RabbitMQ http auth backend",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony",
+            "email": "instabledesign@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "psr/log": "^1.0",
+        "symfony/security": "^2.6|^3.0|^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.5|^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RabbitMQAuth\\": "src"
+        }
+    }
+}
