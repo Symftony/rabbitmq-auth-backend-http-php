@@ -15,8 +15,6 @@ use RabbitMQAuth\Authentication\UserTokenChecker;
 use RabbitMQAuth\Controller\AuthController;
 use RabbitMQAuth\Security;
 
-$tokenStorage = new TokenStorage();
-
 $userProvider = new InMemoryUserProvider(array(
     'admin' => array(
         'password' => 'password',
@@ -40,6 +38,8 @@ $authenticationManager = new AuthenticationProviderManager(array($authenticator)
 $accessDecisionManager = new AccessDecisionManager(array(
     new CustomVoter()
 ));
+
+$tokenStorage = new TokenStorage();
 
 $authorizationChecker = new AuthorizationChecker(
     $tokenStorage,

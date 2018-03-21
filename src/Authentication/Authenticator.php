@@ -76,10 +76,11 @@ class Authenticator implements AuthenticationProviderInterface, LoggerAwareInter
 
             throw $exception;
         } catch (\RuntimeException $exception) {
-            $exception->setToken($token);
             $this->logger->info(sprintf('Can\'t authenticate token : %s.', $exception->getMessage()), array('exception' => $exception, 'token' => $token));
 
-            throw new AuthenticationFailException('Can\'t authenticate token.', 0, $exception);
+            $wrappedException = new AuthenticationFailException('Can\'t authenticate token.', 0, $exception);
+
+            throw $wrappedException->setToken($token);
         }
     }
 
