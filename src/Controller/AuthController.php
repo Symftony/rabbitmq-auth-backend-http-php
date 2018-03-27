@@ -48,7 +48,7 @@ class AuthController
 
     public function vhostAction(Request $request)
     {
-        $token = new UserToken($request->get('username'));
+        $token = new UserToken($request->get('username'), $request->get('vhost'));
         $this->tokenStorage->setToken($token);
 
         $hasAccess = $this->security->vhost($token, $request->get('ip'));
@@ -58,7 +58,7 @@ class AuthController
 
     public function topicAction(Request $request)
     {
-        $token = new UserToken($request->get('username'));
+        $token = new UserToken($request->get('username'), $request->get('vhost'));
         $this->tokenStorage->setToken($token);
 
         $hasAccess = $this->security->topic(
@@ -76,7 +76,7 @@ class AuthController
 
     public function resourceAction(Request $request)
     {
-        $token = new UserToken($request->get('username'));
+        $token = new UserToken($request->get('username'), $request->get('vhost'));
         $this->tokenStorage->setToken($token);
 
         $hasAccess = $this->security->resource(

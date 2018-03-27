@@ -12,7 +12,7 @@ class UserToken extends AbstractToken
     private $username;
 
     /**
-     * @var null
+     * @var string
      */
     private $vhost;
 
@@ -28,10 +28,10 @@ class UserToken extends AbstractToken
 
     /**
      * @param string $username
-     * @param null  $vhost
-     * @param array $roles
+     * @param string $vhost
+     * @param array  $roles
      */
-    public function __construct($username, $vhost = null, array $roles = array())
+    public function __construct($username, $vhost, array $roles = array())
     {
         parent::__construct($roles);
 
@@ -102,6 +102,14 @@ class UserToken extends AbstractToken
         $this->isAuthenticated = $isAuthenticated;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVhost()
+    {
+        return $this->vhost;
     }
 }
 

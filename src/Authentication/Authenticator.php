@@ -9,7 +9,6 @@ use RabbitMQAuth\Exception\AuthenticationException;
 use RabbitMQAuth\Exception\AuthenticationFailException;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class Authenticator implements AuthenticationProviderInterface, LoggerAwareInterface
