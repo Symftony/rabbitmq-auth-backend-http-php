@@ -60,13 +60,31 @@ Now the `Token` is authenticated
 
 After authenticate, we need to authorize the token to access a resource.
 
+First of all you need a `Voter` to check the token authorization.
+The [DefaultVoter](src/Authorization/DefaultVoter.php) use the same logic than internal rabbitmq authorization.
+You can configure each user in each vhost with 4 regular expression that must match to grant access.
+
+```php
+$defaultVoter = new DefaultVoter(array(
+    'admin' => array(
+        'isAdmin' => true,
+    ),
+    'user-1' => array(
+        '/' => array(
+            'ip' => '.*',        // to control the vhost ip access
+            'read' => '.*',      // to control the resource/topic read access
+            'write' => '.*',     // to control the resource/topic write access
+            'configure' => '.*', // to control the resource/topic configure access
+        ),
+    ),
+));
+```
+
 `AccessDecisionManager` is use to allow/deny the token access. `AccessDecisionManager` need an array of `VoterInterface` to do the check.
 You need to implement your own voter, in order to choose if the token is granted or not.
 
 ```php
-$accessDecisionManager = new AccessDecisionManager(array(
-    new CustomVoter()
-));
+$accessDecisionManager = new AccessDecisionManager(array($defaultVoter));
 ```
 
 `AuthorizationChecker` is the manager of authorization process
